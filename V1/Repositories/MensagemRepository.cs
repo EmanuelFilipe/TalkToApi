@@ -16,6 +16,12 @@ namespace TalkToApi.V1.Repositories
         {
             _banco = banco;
         }
+
+        public Mensagem Obter(int id)
+        {
+            return _banco.Mensagens.Find(id);
+        }
+
         public List<Mensagem> ObterMensagem(string usuarioUmId, string usuarioDoisId)
         {
             return _banco.Mensagens.Where(a => (a.DeId == usuarioUmId || a.DeId == usuarioDoisId) && (a.ParaId == usuarioUmId || a.ParaId == usuarioDoisId)).ToList();
@@ -26,6 +32,13 @@ namespace TalkToApi.V1.Repositories
             _banco.Mensagens.Add(mensagem);
             _banco.SaveChanges();
         }
+
+        public void Atualizar(Mensagem mensagem)
+        {
+            _banco.Mensagens.Update(mensagem);
+            _banco.SaveChanges();
+        }
+
 
     }
 }
